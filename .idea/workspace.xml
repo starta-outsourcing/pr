@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="365ca16c-f793-4aca-82d3-163837db6ee8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/03ac3a72-a323-4b96-b135-9efadc371432.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/03ac3a72-a323-4b96-b135-9efadc371432/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/03ac3a72-a323-4b96-b135-9efadc371432/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/03ac3a72-a323-4b96-b135-9efadc371432/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/03ac3a72-a323-4b96-b135-9efadc371432/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/taskflow-d.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/taskflow.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/FilterConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/LoginFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/advice/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/config/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/config/JwtProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/config/PasswordEncoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/entity/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/exception/ApplicationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/exception/InvalidCredentialException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/request/LoginRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/request/UserDeleteRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/request/UserSaveRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/request/UserUpdateRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/response/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/response/UserResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/service/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/util/UserConst.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/util/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/touch .gitignore.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pr/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/pr/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pr/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pr/src/main/resources/application.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/pr">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="taskflow-d" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="taskflow-d" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Exception" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/pr" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="3289ddnwPL54IehCKh347CNAPK4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build pr.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.TaskflowDApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="domain.user.repository" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TaskflowDApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <envs>
+        <env name="DB_NAME" value="taskflowdb" />
+        <env name="PASSWORD" value="6610" />
+        <env name="USER_NAME" value="root" />
+      </envs>
+      <module name="taskflow-d.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.taskflowd.TaskflowDApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="365ca16c-f793-4aca-82d3-163837db6ee8" name="Changes" comment="" />
+      <created>1756791421239</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1756791421239</updated>
+      <workItem from="1756791422355" duration="24273000" />
+      <workItem from="1756830805321" duration="2276000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pr/src/main/java/domain/user/entity/User.java</url>
+          <line>2</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
