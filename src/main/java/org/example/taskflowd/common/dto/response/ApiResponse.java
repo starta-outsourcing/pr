@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import java.net.URI;
 import java.time.LocalDateTime;
 
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
 
@@ -17,11 +18,20 @@ public class ApiResponse<T> {
     private final T data;
     private final LocalDateTime timestamp;
 
-    private ApiResponse(boolean success, String message, T data) {
+    public ApiResponse(boolean success, String message, T data) {
         this.success = success;
         this.message = message;
         this.data = data;
         this.timestamp = LocalDateTime.now();
+    }
+
+    public ApiResponse(String loginSuccess, String token) {
+
+        this.success = true;
+        this.message = loginSuccess;             
+        this.data = (T) token;
+        this.timestamp = LocalDateTime.now();
+
     }
 
     /* ---------- Factory Method ---------- */
