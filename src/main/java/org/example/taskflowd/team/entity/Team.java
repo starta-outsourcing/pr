@@ -1,25 +1,14 @@
 package org.example.taskflowd.team.entity;
 
-<<<<<<< HEAD
 import jakarta.persistence.*;
-=======
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
->>>>>>> 30384f3ce0caca069770bbeccf13d84f83a713a8
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.taskflowd.common.entity.BaseEntity;
-<<<<<<< HEAD
 import org.example.taskflowd.teammember.entity.TeamMember;
 
 import java.util.ArrayList;
 import java.util.List;
-=======
->>>>>>> 30384f3ce0caca069770bbeccf13d84f83a713a8
-
 
 @Entity
 @Getter
@@ -34,9 +23,7 @@ public class Team extends BaseEntity {
 
     private String description;
 
-<<<<<<< HEAD
-
-    //양방향 맞나?
+    // 양방향 관계 설정
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TeamMember> teamMembers = new ArrayList<>();
 

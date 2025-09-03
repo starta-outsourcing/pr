@@ -1,25 +1,63 @@
 package org.example.taskflowd.teammember.entity;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.example.taskflowd.common.entity.BaseEntity;
+import org.example.taskflowd.team.entity.Team;
+import org.example.taskflowd.team.entity.TeamMemberId;
 
-@Getter
+import java.util.UUID;
+
 @Entity
-@NoArgsConstructor
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@IdClass(TeamMemberId.class)
 public class TeamMember extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //유저분
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id", nullable = false)
-//    private User user;
+    @Id
+    private UUID idPk;
 
+    private UUID idPk2;
 
+    private Long userId;
 
+    private String role;
 
+    // 다대일 관계 설정
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    @Setter
+    private Team team;
+
+    // 생성자
+    public TeamMember(Long id, UUID idPk, Long userId, String role) {
+        this.id = id;
+        this.idPk = idPk;
+        this.idPk2 = UUID.randomUUID();
+        this.userId = userId;
+        this.role = role;
+    }
+
+    // 편의 생성자
+    public TeamMember(Team team, Long userId, String role) {
+        this.id = team.getId();
+        this.idPk = UUID.randomUUID();
+        this.idPk2 = UUID.randomUUID();
+        this.userId = userId;
+        this.role = role;
+        this.team = team;
+    }
+
+    // 비즈니스 메서드
+    public void updateRole(String role) {
+        if (role != null && !role.trim().isEmpty()) {
+            this.role = role;
+        }
+    }
 }
