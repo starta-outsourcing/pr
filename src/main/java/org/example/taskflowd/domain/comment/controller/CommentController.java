@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.taskflowd.common.dto.response.ApiResponse;
 import org.example.taskflowd.domain.comment.dto.request.CreateCommentRequest;
 import org.example.taskflowd.domain.comment.dto.request.UpdateCommentRequest;
+import org.example.taskflowd.domain.comment.dto.response.CommentListResponse;
 import org.example.taskflowd.domain.comment.dto.response.CommentResponse;
 import org.example.taskflowd.domain.comment.service.CommentService;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,18 @@ public class CommentController {
 
     private final CommentService commentService;
 
+    @GetMapping
+    public ApiResponse<?> getCommentsFromTask(@RequestParam(defaultValue = "0") int page,
+                                              @RequestParam(defaultValue = "10") int size,
+                                              @RequestParam(defaultValue = "newest") String sort) {
+
+        CommentListResponse commentListResponse = commentService.getComments(page, size, sort);
+        return ApiResponse.ofSuccess(commentListResponse);
+    }
+
     @PostMapping
     public ApiResponse<?> createComment(@PathVariable Long taskId,
-                                        @RequestParam CreateCommentRequest createCommentRequest) {
+                                        @RequestBody CreateCommentRequest createCommentRequest) {
 
         CommentResponse createdComment = commentService.createComment(createCommentRequest, taskId, 1L);
         return ApiResponse.ofSuccess("댓글이 생성되었습니다.", createdComment);
@@ -26,7 +36,7 @@ public class CommentController {
     @PutMapping("/{commentId}")
     public ApiResponse<?> updateComment(@PathVariable Long taskId,
                                         @PathVariable Long commentId,
-                                        @RequestParam UpdateCommentRequest updateCommentRequest) {
+                                        @RequestBody UpdateCommentRequest updateCommentRequest) {
 
         CommentResponse updatedComment = commentService.updateComment(updateCommentRequest, commentId);
         return ApiResponse.ofSuccess("댓글이 수정되었습니다.", updatedComment);

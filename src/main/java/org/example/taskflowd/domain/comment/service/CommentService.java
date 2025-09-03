@@ -2,6 +2,7 @@ package org.example.taskflowd.domain.comment.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.example.taskflowd.domain.comment.dto.response.CommentListResponse;
 import org.example.taskflowd.domain.task.entity.Task;
 import org.example.taskflowd.domain.task.repository.TaskRepository;
 import org.example.taskflowd.domain.user.entity.User;
@@ -11,6 +12,9 @@ import org.example.taskflowd.domain.comment.dto.request.UpdateCommentRequest;
 import org.example.taskflowd.domain.comment.dto.response.CommentResponse;
 import org.example.taskflowd.domain.comment.entity.Comment;
 import org.example.taskflowd.domain.comment.repository.CommentRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +25,17 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
     private final TaskRepository taskRepository;
+
+    @Transactional(readOnly = true)
+    public CommentListResponse getComments(int page, int size, String sort) {
+
+        Sort sortDirection = Sort.by(sort.equals("newest") ? Sort.Order.asc("id") : Sort.Order.desc("id"));
+        PageRequest pageRequest = PageRequest.of(page, size, sortDirection);
+
+        Page<Comment> commentPage = commentRepository.findAll(pageRequest);
+
+        return CommentListResponse.of(commentPage.map(CommentResponse::of).toList());
+    }
 
     @Transactional
     public CommentResponse createComment(CreateCommentRequest createCommentRequest, Long taskId, Long userId) {
