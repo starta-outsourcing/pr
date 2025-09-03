@@ -28,7 +28,7 @@ public class CommentController {
                                         @PathVariable Long commentId,
                                         @RequestParam UpdateCommentRequest updateCommentRequest) {
 
-        CommentResponse updatedComment = commentService.updateComment(updateCommentRequest, taskId, commentId);
+        CommentResponse updatedComment = commentService.updateComment(updateCommentRequest, commentId);
         return ApiResponse.ofSuccess("댓글이 수정되었습니다.", updatedComment);
     }
 

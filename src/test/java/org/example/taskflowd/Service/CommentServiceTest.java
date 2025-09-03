@@ -76,7 +76,7 @@ public class CommentServiceTest {
         UpdateCommentRequest updateCommentRequest = new UpdateCommentRequest("업데이트");
         given(commentRepository.findById(anyLong())).willReturn(Optional.of(comment));
 
-        CommentResponse result = commentService.updateComment(updateCommentRequest, 1L, 1L);
+        CommentResponse result = commentService.updateComment(updateCommentRequest, 1L);
 
         assertThat(result).isNotNull();
     }

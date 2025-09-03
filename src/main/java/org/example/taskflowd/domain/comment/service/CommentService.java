@@ -36,11 +36,9 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentResponse updateComment(UpdateCommentRequest updateCommentRequest, Long taskId, Long commentId) {
+    public CommentResponse updateComment(UpdateCommentRequest updateCommentRequest, Long commentId) {
 
         Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new EntityNotFoundException("Comment not found"));
-        if (!comment.getTask().getId().equals(taskId)) { throw new EntityNotFoundException("Task not found"); }
-
         comment.update(updateCommentRequest);
 
         return CommentResponse.of(comment);
