@@ -31,4 +31,12 @@ public class CommentController {
         CommentResponse updatedComment = commentService.updateComment(updateCommentRequest, taskId, commentId);
         return ApiResponse.ofSuccess("댓글이 수정되었습니다.", updatedComment);
     }
+
+    @DeleteMapping("/{commentId}")
+    public ApiResponse<?> deleteComment(@PathVariable Long taskId,
+                                        @PathVariable Long commentId) {
+
+        commentService.deleteComment(commentId);
+        return ApiResponse.ofSuccess("댓글이 삭제되었습니다.");
+    }
 }

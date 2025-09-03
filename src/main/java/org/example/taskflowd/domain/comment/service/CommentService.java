@@ -45,4 +45,11 @@ public class CommentService {
 
         return CommentResponse.of(comment);
     }
+
+    @Transactional
+    public void deleteComment(Long commentId) {
+
+        Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new EntityNotFoundException("Comment not found"));
+        comment.delete();
+    }
 }
