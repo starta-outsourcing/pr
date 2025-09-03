@@ -5,48 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="365ca16c-f793-4aca-82d3-163837db6ee8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/03ac3a72-a323-4b96-b135-9efadc371432.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/03ac3a72-a323-4b96-b135-9efadc371432/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/03ac3a72-a323-4b96-b135-9efadc371432/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/03ac3a72-a323-4b96-b135-9efadc371432/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/03ac3a72-a323-4b96-b135-9efadc371432/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/taskflow-d.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/taskflow.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/FilterConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/LoginFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/config/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/config/JwtProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/config/PasswordEncoder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/entity/BaseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/exception/ApplicationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/common/exception/InvalidCredentialException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/request/LoginRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/request/UserDeleteRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/request/UserSaveRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/request/UserUpdateRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/response/ApiResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/dto/response/UserResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/util/UserConst.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/domain/user/util/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/touch .gitignore.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/common/advice/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/common/config/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/common/config/JwtProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/common/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/common/entity/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/common/exception/ApplicationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/common/exception/InvalidCredentialException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/dto/request/LoginRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/dto/request/UserDeleteRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/dto/request/UserSaveRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/dto/request/UserUpdateRequestDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/dto/response/ApiResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/dto/response/UserResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/repository/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/service/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/util/UserConst.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/util/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pr/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/pr/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pr/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pr/src/main/resources/application.yml" afterDir="false" />
     </list>
@@ -88,6 +69,7 @@
         <option value="Interface" />
         <option value="Exception" />
         <option value="Class" />
+        <option value="AnnotationType" />
       </list>
     </option>
   </component>
@@ -106,6 +88,7 @@
   "keyToString": {
     "Gradle.Build pr.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
+    "Gradle.pr [:org.example.taskflowd.domain.common.JwtKeyGenerator.main()].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -132,10 +115,24 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.example.taskflowd.domain.common.config" />
       <recent name="domain.user.repository" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.TaskflowDApplication">
+    <configuration name="JwtKeyGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.taskflowd.domain.common.JwtKeyGenerator" />
+      <module name="taskflow-d.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.taskflowd.domain.common.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TaskflowDApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <envs>
         <env name="DB_NAME" value="taskflowdb" />
@@ -148,6 +145,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.JwtKeyGenerator" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -165,7 +167,9 @@
       <option name="presentableId" value="Default" />
       <updated>1756791421239</updated>
       <workItem from="1756791422355" duration="24273000" />
-      <workItem from="1756830805321" duration="2276000" />
+      <workItem from="1756830805321" duration="3021000" />
+      <workItem from="1756833943862" duration="386000" />
+      <workItem from="1756855862571" duration="7684000" />
     </task>
     <servers />
   </component>
@@ -199,9 +203,24 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/pr/src/main/java/domain/user/entity/User.java</url>
+          <url>file://$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/entity/User.java</url>
           <line>2</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/controller/UserController.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/common/LoginFilter.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/common/config/JwtAuthenticationFilter.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
