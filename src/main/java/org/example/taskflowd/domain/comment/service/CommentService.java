@@ -7,6 +7,7 @@ import org.example.taskflowd.domain.Task.Repository.TaskRepository;
 import org.example.taskflowd.domain.User.Entity.User;
 import org.example.taskflowd.domain.User.Repository.UserRepository;
 import org.example.taskflowd.domain.comment.dto.request.CreateCommentRequest;
+import org.example.taskflowd.domain.comment.dto.request.UpdateCommentRequest;
 import org.example.taskflowd.domain.comment.dto.response.CommentResponse;
 import org.example.taskflowd.domain.comment.entity.Comment;
 import org.example.taskflowd.domain.comment.repository.CommentRepository;
@@ -32,5 +33,16 @@ public class CommentService {
         Comment savedComment = commentRepository.save(comment);
 
         return CommentResponse.of(savedComment);
+    }
+
+    @Transactional
+    public CommentResponse updateComment(UpdateCommentRequest updateCommentRequest, Long taskId, Long commentId) {
+
+        Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new EntityNotFoundException("Comment not found"));
+        if (!comment.getTask().getId().equals(taskId)) { throw new EntityNotFoundException("Task not found"); }
+
+        comment.update(updateCommentRequest);
+
+        return CommentResponse.of(comment);
     }
 }

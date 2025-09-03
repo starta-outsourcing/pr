@@ -5,6 +5,7 @@ import org.example.taskflowd.domain.Task.Repository.TaskRepository;
 import org.example.taskflowd.domain.User.Entity.User;
 import org.example.taskflowd.domain.User.Repository.UserRepository;
 import org.example.taskflowd.domain.comment.dto.request.CreateCommentRequest;
+import org.example.taskflowd.domain.comment.dto.request.UpdateCommentRequest;
 import org.example.taskflowd.domain.comment.dto.response.CommentResponse;
 import org.example.taskflowd.domain.comment.entity.Comment;
 import org.example.taskflowd.domain.comment.repository.CommentRepository;
@@ -57,6 +58,26 @@ public class CommentServiceTest {
         given(commentRepository.save(any(Comment.class))).willReturn(savedComment);
 
         CommentResponse result = commentService.createComment(createCommentRequest, 1L, 1L);
+
+        assertThat(result).isNotNull();
+    }
+
+    @Test
+    @DisplayName("[CommentService - updateComment] 정상 작동 확인")
+    @Transactional
+    void updateComment() {
+
+        CreateCommentRequest createCommentRequest = new CreateCommentRequest("내용", null);
+        User user = new User();
+        Task task = new Task();
+        ReflectionTestUtils.setField(user, "id", 1L);
+        ReflectionTestUtils.setField(task, "id", 1L);
+        Comment comment = Comment.create(createCommentRequest, task, user);
+
+        UpdateCommentRequest updateCommentRequest = new UpdateCommentRequest("업데이트");
+        given(commentRepository.findById(anyLong())).willReturn(Optional.of(comment));
+
+        CommentResponse result = commentService.updateComment(updateCommentRequest, 1L, 1L);
 
         assertThat(result).isNotNull();
     }
