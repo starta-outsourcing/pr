@@ -48,6 +48,4 @@ public class User extends BaseEntity {
         this.deleted = true;
     }
 
-
-
 }
