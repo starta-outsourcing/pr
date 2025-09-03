@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public String handleLogin(LoginRequestDto dto) {
         // 1. 이메일로 사용자 조회 (Soft Delete 적용)
-        User user = userRepository.findByEmailAndDeletedFalse(dto.getEmail())
+        User user = userRepository.findByEmailAndDeletedAtIsNull(dto.getEmail())
                 .orElseThrow(() -> new GlobalException(ErrorCodeEnum.USER_NOT_FOUND));
 
         // 2. 비밀번호 검증
@@ -114,13 +114,13 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteById(Long userId, String password) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 유저가 존재하지 않습니다."));
+                .orElseThrow(() -> new GlobalException(ErrorCodeEnum.USER_NOT_FOUND));
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new GlobalException(ErrorCodeEnum.USER_NOT_FOUND);
-
+            throw new GlobalException(ErrorCodeEnum.PASSWORD_NOT_MATCH); // 에러 코드 수정
         }
 
-        user.softDelete();
+        // BaseEntity delete() 메서드 사용
+        user.delete();
     }
 }

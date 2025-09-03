@@ -26,7 +26,13 @@ public abstract class BaseEntity {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
+    // Soft delete 수행
     public void delete() {
         this.deletedAt = LocalDateTime.now();
+    }
+
+    // 삭제 여부 확인
+    public boolean isDeleted() {
+        return this.deletedAt != null;
     }
 }

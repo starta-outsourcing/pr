@@ -27,9 +27,8 @@ public class User extends BaseEntity {
 
     private String password;
 
-    private boolean deleted = false;
 
-    // 일반 생성자. 회원 가입시 사용
+    // 일반 생성자
     public User(String userName, String email, String password) {
         this.userName = userName;
         this.email = email;
@@ -42,10 +41,4 @@ public class User extends BaseEntity {
         this.email = email;
         this.password = password;
     }
-
-    // 사용자 삭제
-    public void softDelete() {
-        this.deleted = true;
-    }
-
 }
