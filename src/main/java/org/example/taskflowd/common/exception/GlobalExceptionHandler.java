@@ -44,3 +44,5 @@ public class GlobalExceptionHandler {
                 .body(ApiErrorResponse.from(httpStatus, message));
     }
 }
+
+
