@@ -1,6 +1,9 @@
 package org.example.taskflowd.common.enums;
 
+import lombok.Getter;
+
 // 각자 Message를 명세서에 따라 등록하시면 됩니다!
+@Getter
 public enum ResponseMessage {
     // TASK
     TASK_CREATED("Task가 생성되었습니다."),
@@ -16,7 +19,4 @@ public enum ResponseMessage {
         this.message = message;
     }
 
-    public String getMessage() {
-        return message;
-    }
 }
