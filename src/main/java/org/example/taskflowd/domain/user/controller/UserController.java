@@ -1,9 +1,9 @@
 package org.example.taskflowd.domain.user.controller;
 
+import org.example.taskflowd.common.dto.response.ApiResponse;
 import org.example.taskflowd.domain.user.dto.request.UserDeleteRequestDto;
 import org.example.taskflowd.domain.user.dto.request.UserSaveRequestDto;
 import org.example.taskflowd.domain.user.dto.request.UserUpdateRequestDto;
-import org.example.taskflowd.domain.user.dto.response.ApiResponse;
 import org.example.taskflowd.domain.user.dto.response.UserResponseDto;
 import org.example.taskflowd.domain.user.service.UserService;
 import org.example.taskflowd.domain.user.util.UserConst;
@@ -31,7 +31,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<UserResponseDto>> signup(@RequestBody UserSaveRequestDto dto) {
         UserResponseDto userDto = userService.save(dto);
-        return ResponseEntity.ok(new ApiResponse<>(UserConst.SIGNUP_SUCCESS, userDto));
+        return ResponseEntity.ok(ApiResponse.ofSuccess(UserConst.SIGNUP_SUCCESS, userDto));
     }
 
     // 전체 사용자 조회 API

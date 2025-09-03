@@ -1,7 +1,8 @@
 package org.example.taskflowd.domain.user.service;
 
 
-import org.example.taskflowd.domain.common.exception.InvalidCredentialException;
+import org.example.taskflowd.common.exception.GlobalException;
+import org.example.taskflowd.common.util.ErrorCodeEnum;
 import org.example.taskflowd.domain.user.dto.request.UserUpdateRequestDto;
 import org.example.taskflowd.domain.user.dto.mapper.UserMapper;
 import org.example.taskflowd.domain.user.dto.request.UserSaveRequestDto;
@@ -38,7 +39,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UserResponseDto save(UserSaveRequestDto dto) {
         if (userRepository.existsByEmail(dto.getEmail())) {
-            throw new IllegalArgumentException("해당 이메일은 이미 사용중입니다.");
+            throw new GlobalException(ErrorCodeEnum.EMAIL_ALREADY_EXISTS);
         }
 
         String encodedPassword = passwordEncoder.encode(dto.getPassword());
@@ -54,11 +55,12 @@ public class UserServiceImpl implements UserService {
     public String handleLogin(LoginRequestDto dto) {
         // 1. 이메일로 사용자 조회 (Soft Delete 적용)
         User user = userRepository.findByEmailAndDeletedFalse(dto.getEmail())
-                .orElseThrow(() -> new InvalidCredentialException("해당 이메일이 존재하지 않습니다."));
+                .orElseThrow(() -> new GlobalException(ErrorCodeEnum.USER_NOT_FOUND));
 
         // 2. 비밀번호 검증
         if (!passwordEncoder.matches(dto.getPassword(), user.getPassword())) {
-            throw new InvalidCredentialException("비밀번호가 일치하지 않습니다.");
+            throw new GlobalException(ErrorCodeEnum.USER_NOT_FOUND);
+
         }
 
         // 3. JWT 생성 (일관되게 userId를 subject로)
@@ -80,8 +82,8 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public UserResponseDto getProfile(Long userId) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 유저가 존재하지 않습니다."));
-        if(user.isDeleted()) throw new IllegalArgumentException("삭제된 사용자입니다.");
+                .orElseThrow(() -> new GlobalException(ErrorCodeEnum.USER_NOT_FOUND));
+        if (user.isDeleted()) throw new GlobalException(ErrorCodeEnum.USER_DELETED);
         return UserMapper.toResponseDto(user);
     }
 
@@ -91,20 +93,21 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public UserResponseDto update(Long userId, UserUpdateRequestDto dto) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("해당 유저가 존재하지 않습니다."));
+                .orElseThrow(() -> new GlobalException(ErrorCodeEnum.USER_NOT_FOUND));
 
-        if (userRepository.existsByEmail(dto.getEmail()) && !user.getEmail().equals(dto.getEmail())) {
-            throw new IllegalArgumentException("해당 이메일은 이미 사용중입니다.");
-        }
-        if (userRepository.existsByUserName(dto.getUserName()) && !user.getUserName().equals(dto.getUserName())) {
-            throw new IllegalArgumentException("해당 사용자 이름은 이미 사용중입니다.");
+        if (!user.getEmail().equals(dto.getEmail()) && userRepository.existsByEmail(dto.getEmail())) {
+            throw new GlobalException(ErrorCodeEnum.EMAIL_ALREADY_EXISTS);
         }
 
-        String encodedPassword = passwordEncoder.encode(dto.getPassword());
-        user.update(dto.getUserName(), dto.getEmail(), encodedPassword);
+        if (!user.getUserName().equals(dto.getUserName()) && userRepository.existsByUserName(dto.getUserName())) {
+            throw new GlobalException(ErrorCodeEnum.USERNAME_ALREADY_EXISTS);
+        }
+
+        user.update(dto.getUserName(), dto.getEmail(), passwordEncoder.encode(dto.getPassword()));
 
         return UserMapper.toResponseDto(user);
     }
+
 
     // 회원탈퇴 (Soft Delete + 비밀번호 확인)
     @Override
@@ -114,7 +117,8 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 유저가 존재하지 않습니다."));
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new InvalidCredentialException("비밀번호가 일치하지 않습니다.");
+            throw new GlobalException(ErrorCodeEnum.USER_NOT_FOUND);
+
         }
 
         user.softDelete();
