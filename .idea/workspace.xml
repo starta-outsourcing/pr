@@ -26,8 +26,6 @@
       <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/service/UserServiceImpl.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/util/UserConst.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/pr/src/main/java/org/example/taskflowd/domain/user/util/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pr/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/pr/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pr/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pr/src/main/resources/application.yml" afterDir="false" />
     </list>
@@ -169,7 +167,7 @@
       <workItem from="1756791422355" duration="24273000" />
       <workItem from="1756830805321" duration="3021000" />
       <workItem from="1756833943862" duration="386000" />
-      <workItem from="1756855862571" duration="7684000" />
+      <workItem from="1756855862571" duration="8257000" />
     </task>
     <servers />
   </component>
