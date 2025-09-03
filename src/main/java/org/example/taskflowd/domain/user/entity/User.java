@@ -1,6 +1,6 @@
 package org.example.taskflowd.domain.user.entity;
 
-import org.example.taskflowd.domain.common.entity.BaseEntity;
+import org.example.taskflowd.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
