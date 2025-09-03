@@ -1,4 +1,4 @@
-package org.example.taskflowd.tasks.enums;
+package org.example.taskflowd.domain.tasks.enums;
 
 import lombok.Getter;
 
