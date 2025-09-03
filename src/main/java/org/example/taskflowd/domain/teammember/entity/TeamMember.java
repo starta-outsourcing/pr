@@ -1,4 +1,4 @@
-package org.example.taskflowd.teammember.entity;
+package org.example.taskflowd.domain.teammember.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.example.taskflowd.common.entity.BaseEntity;
-import org.example.taskflowd.team.entity.Team;
-import org.example.taskflowd.team.entity.TeamMemberId;
+import org.example.taskflowd.domain.team.entity.Team;
+import org.example.taskflowd.domain.team.entity.TeamMemberId;
 
 import java.util.UUID;
 
@@ -39,7 +39,6 @@ public class TeamMember extends BaseEntity {
     public TeamMember(Long id, UUID idPk, Long userId, String role) {
         this.id = id;
         this.idPk = idPk;
-        this.idPk2 = UUID.randomUUID();
         this.userId = userId;
         this.role = role;
     }
@@ -47,8 +46,7 @@ public class TeamMember extends BaseEntity {
     // 편의 생성자
     public TeamMember(Team team, Long userId, String role) {
         this.id = team.getId();
-        this.idPk = UUID.randomUUID();
-        this.idPk2 = UUID.randomUUID();
+        this.idPk = team.getIdPk(); // Team의 UUID 사용
         this.userId = userId;
         this.role = role;
         this.team = team;

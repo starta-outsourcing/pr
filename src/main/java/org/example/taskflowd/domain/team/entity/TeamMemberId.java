@@ -1,4 +1,4 @@
-package org.example.taskflowd.team.entity;
+package org.example.taskflowd.domain.team.entity;
 
 
 import lombok.AllArgsConstructor;
