@@ -1,9 +1,9 @@
 package org.example.taskflowd.Service;
 
-import org.example.taskflowd.domain.Task.Entity.Task;
-import org.example.taskflowd.domain.Task.Repository.TaskRepository;
-import org.example.taskflowd.domain.User.Entity.User;
-import org.example.taskflowd.domain.User.Repository.UserRepository;
+import org.example.taskflowd.domain.task.entity.Task;
+import org.example.taskflowd.domain.task.repository.TaskRepository;
+import org.example.taskflowd.domain.user.entity.User;
+import org.example.taskflowd.domain.user.repository.UserRepository;
 import org.example.taskflowd.domain.comment.dto.request.CreateCommentRequest;
 import org.example.taskflowd.domain.comment.dto.request.UpdateCommentRequest;
 import org.example.taskflowd.domain.comment.dto.response.CommentResponse;
@@ -16,7 +16,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.transaction.annotation.Transactional;
 

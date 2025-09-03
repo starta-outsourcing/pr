@@ -2,10 +2,10 @@ package org.example.taskflowd.domain.comment.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.example.taskflowd.domain.Task.Entity.Task;
-import org.example.taskflowd.domain.Task.Repository.TaskRepository;
-import org.example.taskflowd.domain.User.Entity.User;
-import org.example.taskflowd.domain.User.Repository.UserRepository;
+import org.example.taskflowd.domain.task.entity.Task;
+import org.example.taskflowd.domain.task.repository.TaskRepository;
+import org.example.taskflowd.domain.user.entity.User;
+import org.example.taskflowd.domain.user.repository.UserRepository;
 import org.example.taskflowd.domain.comment.dto.request.CreateCommentRequest;
 import org.example.taskflowd.domain.comment.dto.request.UpdateCommentRequest;
 import org.example.taskflowd.domain.comment.dto.response.CommentResponse;

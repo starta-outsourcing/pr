@@ -1,7 +1,7 @@
 package org.example.taskflowd.domain.comment.dto.response;
 
 import lombok.Builder;
-import org.example.taskflowd.domain.User.Entity.User;
+import org.example.taskflowd.domain.user.entity.User;
 import org.example.taskflowd.domain.comment.entity.Comment;
 
 import java.time.LocalDateTime;
