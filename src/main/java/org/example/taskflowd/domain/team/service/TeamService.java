@@ -10,6 +10,8 @@ import org.example.taskflowd.domain.team.entity.Team;
 import org.example.taskflowd.domain.team.repository.TeamRepository;
 import org.example.taskflowd.domain.teammember.entity.TeamMember;
 import org.example.taskflowd.domain.teammember.repository.TeamMemberRepository;
+import org.example.taskflowd.domain.user.dto.response.UserResponseDto;
+import org.example.taskflowd.domain.user.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +25,7 @@ public class TeamService {
 
     private final TeamRepository teamRepository;
     private final TeamMemberRepository teamMemberRepository;
-
+    private final UserService userService;
     //팀 목록 조회
     public List<TeamResponse> getAllTeams() {
         List<Team> teams = teamRepository.findAll();
@@ -102,15 +104,14 @@ public class TeamService {
     }
 
     private UserResponse convertToUserResponse(TeamMember teamMember) {
-        // TODO: User 정보 조회 로직 필요 (User 도메인과 협업)
-        // 임시로 TeamMember 정보로 생성
+        UserResponseDto userDto = userService.getProfile(teamMember.getUserId());
         return new UserResponse(
-                teamMember.getUserId(),
-                "username", // User 정보에서 가져와야 함
-                "name",     // User 정보에서 가져와야 함
-                "email",    // User 정보에서 가져와야 함
+                userDto.getId(),
+                userDto.getUserName(),  // username
+                userDto.getUserName(),  // name (동일하게 사용)
+                userDto.getEmail(),
                 teamMember.getRole(),
-                teamMember.getCreatedAt()
+                userDto.getCreatedAt()
         );
     }
 

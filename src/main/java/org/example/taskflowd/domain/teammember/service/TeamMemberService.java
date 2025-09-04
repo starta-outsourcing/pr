@@ -9,6 +9,9 @@ import org.example.taskflowd.domain.team.repository.TeamRepository;
 import org.example.taskflowd.domain.teammember.entity.TeamMember;
 import org.example.taskflowd.common.exception.GlobalException;
 import org.example.taskflowd.domain.teammember.repository.TeamMemberRepository;
+import org.example.taskflowd.domain.user.dto.response.UserResponseDto;
+import org.example.taskflowd.domain.user.entity.User;
+import org.example.taskflowd.domain.user.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,14 +25,14 @@ public class TeamMemberService {
 
     private final TeamRepository teamRepository;
     private final TeamMemberRepository teamMemberRepository;
+    private final UserService userService;
 
     // 팀 멤버 추가
     @Transactional
     public TeamResponse addMember(Long teamId, TeamMemberAddRequest request) {
         Team team = findTeamById(teamId);
 
-        // TODO: User 존재 확인 (User 도메인과 협업 필요)
-        // userService.existsById(request.getUserId())
+        User user = userService.getUser(request.getUserId());
 
         if (teamMemberRepository.existsByTeamIdAndUserId(teamId, request.getUserId())) {
             throw new IllegalArgumentException("이미 팀에 소속되어 있습니다.");
@@ -56,19 +59,22 @@ public class TeamMemberService {
     // 추가 가능한 사용자 목록 조회
     public List<UserResponse> getAvailableUsers(Long teamId) {
         findTeamById(teamId);
-        // TODO: User 도메인과 협업하여 구현 필요
-        // 1. 모든 사용자 조회
-        // 2. 현재 팀에 속하지 않은 사용자 필터링
-        // List<User> allUsers = userService.getAllUsers();
-        // List<Long> teamMemberIds = teamMemberRepository.findByTeamId(teamId)
-        //     .stream().map(TeamMember::getUserId).toList();
-        // return allUsers.stream()
-        //     .filter(user -> !teamMemberIds.contains(user.getId()))
-        //     .map(this::convertToUserResponse)
-        //     .collect(Collectors.toList());
 
-        // 임시 구현 (빈 리스트 반환)
-        return List.of();
+        List<UserResponseDto> allUsers = userService.findAll();
+        List<Long> teamMemberIds = teamMemberRepository.findByTeamId(teamId)
+                .stream().map(TeamMember::getUserId).toList();
+
+        return allUsers.stream()
+                .filter(userDto -> !teamMemberIds.contains(userDto.getId()))
+                .map(userDto -> new UserResponse(
+                        userDto.getId(),
+                        userDto.getUserName(),
+                        userDto.getUserName(),
+                        userDto.getEmail(),
+                        "USER",
+                        userDto.getCreatedAt()
+                ))
+                .collect(Collectors.toList());
     }
 
     // Entity to DTO 변환 메서드
@@ -88,14 +94,14 @@ public class TeamMemberService {
     }
 
     private UserResponse convertToUserResponse(TeamMember teamMember) {
-        // TODO: User 정보 조회 로직 필요 (User 도메인과 협업)
+        UserResponseDto userDto = userService.getProfile(teamMember.getUserId());
         return new UserResponse(
-                teamMember.getUserId(),
-                "username", // User 정보에서 가져와야 함
-                "name",     // User 정보에서 가져와야 함
-                "email",    // User 정보에서 가져와야 함
+                userDto.getId(),
+                userDto.getUserName(),
+                userDto.getUserName(),
+                userDto.getEmail(),
                 teamMember.getRole(),
-                teamMember.getCreatedAt()
+                userDto.getCreatedAt()
         );
     }
 
