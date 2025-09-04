@@ -10,6 +10,7 @@ import org.example.taskflowd.domain.user.dto.request.LoginRequestDto;
 import org.example.taskflowd.domain.user.dto.response.UserResponseDto;
 import org.example.taskflowd.domain.user.entity.User;
 import org.example.taskflowd.domain.user.repository.UserRepository;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -123,4 +124,13 @@ public class UserServiceImpl implements UserService {
         // BaseEntity delete() 메서드 사용
         user.delete();
     }
+
+    // userId 기반으로 User 객체 반환
+    @Override
+    public User getUser(Long userId) {
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new GlobalException(ErrorCodeEnum.USER_NOT_FOUND));
+    }
 }
+
+
