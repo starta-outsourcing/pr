@@ -78,7 +78,7 @@ public class TaskController {
 
     // 2.6 Task 삭제
     @DeleteMapping("/{taskId}")
-    public ResponseEntity<ApiResponse<TaskUpdateResponse>> deleteTask(
+    public ResponseEntity<ApiResponse<Object>> deleteTask(
             @SessionAttribute(value = "LOGIN_USER_ID") Long loginUserId,
             @PathVariable Long taskId
     ) {

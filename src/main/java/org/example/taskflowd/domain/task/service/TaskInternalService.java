@@ -1,10 +1,12 @@
 package org.example.taskflowd.domain.task.service;
 
 import org.example.taskflowd.domain.task.dto.TaskDescriptor;
+import org.example.taskflowd.domain.task.entity.Task;
 
 import java.util.Optional;
 
 public interface TaskInternalService {
     TaskDescriptor getTaskDescriptorByIdOrThrow(Long id);
+    Task getTaskByIdOrThrow(Long id);
 }
 
