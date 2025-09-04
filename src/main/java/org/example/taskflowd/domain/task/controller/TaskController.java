@@ -31,17 +31,6 @@ public class TaskController {
     // In Domain
     private final TaskExternalService taskExternalService;
 
-    // Out of Domain
-    private final UserService userService;
-
-
-    /* ========== Helper Method ========== */
-    // TODO : 토큰에서 ID 추출 로직 물어보기
-    private Long getUserIdFromRequest(HttpServletRequest request) {
-        // MOCK
-        return 1L;
-    }
-
     /* ========== Main Method ========== */
     // <<< /tasks >>>
     // 2.1 Task 생성

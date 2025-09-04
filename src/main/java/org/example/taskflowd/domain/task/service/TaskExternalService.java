@@ -56,7 +56,7 @@ public class TaskExternalService {
 
     // 2.2 Task 목록 조회
     public Page<TaskListItemResponse> getTasks (Pageable pageable) {
-        Page<Task> tasks = taskRepository.findAllAndDeletedAtIsNull(pageable);
+        Page<Task> tasks = taskRepository.findAllByDeletedAtIsNull(pageable);
 
         return tasks.map(taskMapper::toListItemResponse);
     }
