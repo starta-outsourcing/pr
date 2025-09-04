@@ -3,6 +3,7 @@ package org.example.taskflowd.domain.task.mapper;
 import org.example.taskflowd.domain.task.dto.TaskDescriptor;
 import org.example.taskflowd.domain.task.dto.request.TaskCreateRequest;
 import org.example.taskflowd.domain.task.dto.response.TaskCreateResponse;
+import org.example.taskflowd.domain.task.dto.response.TaskDetailResponse;
 import org.example.taskflowd.domain.task.dto.response.TaskListItemResponse;
 import org.example.taskflowd.domain.task.entity.Task;
 import org.example.taskflowd.domain.user.dto.mapper.UserMapper;
@@ -41,6 +42,15 @@ public class TaskMapper {
 
     public TaskListItemResponse toListItemResponse(Task task) {
         return TaskListItemResponse.toDto(
+                task.getId(), task.getTitle(), task.getDescription(), task.getDueDate(),
+                task.getPriority().getCode(), task.getStatus().getCode(),
+                task.getAssignee().getId(), UserMapper.toResponseDto(task.getAssignee()),
+                task.getCreatedAt(), task.getUpdatedAt()
+        );
+    }
+
+    public TaskDetailResponse toDetailResponse(Task task) {
+        return TaskDetailResponse.toDto(
                 task.getId(), task.getTitle(), task.getDescription(), task.getDueDate(),
                 task.getPriority().getCode(), task.getStatus().getCode(),
                 task.getAssignee().getId(), UserMapper.toResponseDto(task.getAssignee()),
