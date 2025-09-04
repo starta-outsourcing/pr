@@ -2,6 +2,7 @@ package org.example.taskflowd.domain.task.service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.taskflowd.domain.task.dto.TaskDescriptor;
+import org.example.taskflowd.domain.task.entity.Task;
 import org.example.taskflowd.domain.task.exception.InvalidTaskException;
 import org.example.taskflowd.domain.task.exception.TaskErrorCode;
 import org.example.taskflowd.domain.task.mapper.TaskMapper;
@@ -20,6 +21,12 @@ public class TaskInternalServiceImpl implements TaskInternalService {
     public TaskDescriptor getTaskDescriptorByIdOrThrow(Long id) {
         return taskRepository.findByIdAndDeletedAtIsNull(id)
                 .map(taskMapper::toDescriptor)
+                .orElseThrow(() -> new InvalidTaskException(TaskErrorCode.TSK_SEARCH_FAILED_INVALID_ID));
+    }
+
+    @Override
+    public Task getTaskByIdOrThrow(Long id) {
+        return taskRepository.findByIdAndDeletedAtIsNull(id)
                 .orElseThrow(() -> new InvalidTaskException(TaskErrorCode.TSK_SEARCH_FAILED_INVALID_ID));
     }
 }
