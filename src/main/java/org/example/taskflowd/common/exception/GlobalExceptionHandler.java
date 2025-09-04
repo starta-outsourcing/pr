@@ -20,6 +20,8 @@ public class GlobalExceptionHandler {
         return response(ex.getErrorCode());
     }
 
+
+
     // ===== 서버 오류 시 (최종) =====
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiErrorResponse> handleException(Exception ex, HttpServletRequest req) {
@@ -42,3 +44,5 @@ public class GlobalExceptionHandler {
                 .body(ApiErrorResponse.from(httpStatus, message));
     }
 }
+
+

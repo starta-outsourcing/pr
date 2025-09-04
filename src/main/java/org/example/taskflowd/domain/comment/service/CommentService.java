@@ -54,7 +54,7 @@ public class CommentService {
     public CommentResponse updateComment(UpdateCommentRequest updateCommentRequest, Long commentId) {
 
         Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new EntityNotFoundException("Comment not found"));
-        comment.update(updateCommentRequest);
+        comment.updateComment(updateCommentRequest.content());
 
         return CommentResponse.of(comment);
     }
