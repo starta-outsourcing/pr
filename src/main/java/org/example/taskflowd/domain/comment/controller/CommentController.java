@@ -1,52 +1,83 @@
 package org.example.taskflowd.domain.comment.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example.taskflowd.common.dto.response.ApiPageResponse;
 import org.example.taskflowd.common.dto.response.ApiResponse;
+import org.example.taskflowd.common.enums.ResponseMessage;
 import org.example.taskflowd.domain.comment.dto.request.CreateCommentRequest;
 import org.example.taskflowd.domain.comment.dto.request.UpdateCommentRequest;
-import org.example.taskflowd.domain.comment.dto.response.CommentListResponse;
-import org.example.taskflowd.domain.comment.dto.response.CommentResponse;
-import org.example.taskflowd.domain.comment.service.CommentService;
+import org.example.taskflowd.domain.comment.dto.response.CommentListItemResponse;
+import org.example.taskflowd.domain.comment.dto.response.CreateCommentResponse;
+import org.example.taskflowd.domain.comment.dto.response.UpdateCommentResponse;
+import org.example.taskflowd.domain.comment.entity.Comment;
+import org.example.taskflowd.domain.comment.service.CommentExternalService;
+import org.example.taskflowd.domain.task.dto.response.TaskListItemResponse;
+import org.example.taskflowd.domain.task.entity.Task;
+import org.example.taskflowd.domain.task.service.TaskExternalService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/tasks/{taskId}/comments")
+@RequestMapping("/api/v1/tasks/{taskId}/comments")
 public class CommentController {
+    // In Domain
+    private final CommentExternalService commentExternalService;
 
-    private final CommentService commentService;
-
-    @GetMapping
-    public ApiResponse<?> getCommentsFromTask(@RequestParam(defaultValue = "0") int page,
-                                              @RequestParam(defaultValue = "10") int size,
-                                              @RequestParam(defaultValue = "newest") String sort) {
-
-        CommentListResponse commentListResponse = commentService.getComments(page, size, sort);
-        return ApiResponse.ofSuccess(commentListResponse);
-    }
-
+    /* ========== Main Method ========== */
+    // <<< /tasks >>>
+    // 3.1 Comment 생성
     @PostMapping
-    public ApiResponse<?> createComment(@PathVariable Long taskId,
-                                        @RequestBody CreateCommentRequest createCommentRequest) {
-
-        CommentResponse createdComment = commentService.createComment(createCommentRequest, taskId, 1L);
-        return ApiResponse.ofSuccess("댓글이 생성되었습니다.", createdComment);
+    public ResponseEntity<ApiResponse<CreateCommentResponse>> createComment(
+            @SessionAttribute(value = "LOGIN_USER_ID") Long loginUserId,
+            @Validated @RequestBody CreateCommentRequest createCommentRequest,
+            @PathVariable Long taskId) {
+        return ApiResponse.created(
+                ResponseMessage.COMMENT_CREATED,
+                commentExternalService.createComment(createCommentRequest, taskId, loginUserId),
+                null
+        );
     }
 
+
+    // 3.2 Task의 Comment 목록 조회
+    @GetMapping
+    public ResponseEntity<ApiPageResponse<CommentListItemResponse>> getCommentsFromTask(
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "10") int size,
+            @RequestParam(required = false, defaultValue = "newest") String sort,
+            @PathVariable Long taskId
+    ) {
+        Pageable pageable = PageRequest.of(
+                page, size,
+                sort.equals("oldest") ?
+                        Sort.sort(Comment.class).by(Comment::getCreatedAt).ascending() :
+                        Sort.sort(Comment.class).by(Comment::getCreatedAt).descending()
+        );
+
+        return ApiPageResponse.success(commentExternalService.getCommentsFromTask(pageable, taskId));
+    }
+
+    // 3.3 Comment 수정
     @PutMapping("/{commentId}")
-    public ApiResponse<?> updateComment(@PathVariable Long taskId,
-                                        @PathVariable Long commentId,
-                                        @RequestBody UpdateCommentRequest updateCommentRequest) {
-
-        CommentResponse updatedComment = commentService.updateComment(updateCommentRequest, commentId);
-        return ApiResponse.ofSuccess("댓글이 수정되었습니다.", updatedComment);
+    public ResponseEntity<ApiResponse<UpdateCommentResponse>> updateComment(
+            @SessionAttribute(value = "LOGIN_USER_ID") Long loginUserId,
+            @PathVariable Long commentId,
+            @RequestBody UpdateCommentRequest updateCommentRequest) {
+        return ApiResponse.ok(commentExternalService.updateComment(updateCommentRequest, commentId, loginUserId));
     }
 
+    // 3.4 Comment 삭제
     @DeleteMapping("/{commentId}")
-    public ApiResponse<?> deleteComment(@PathVariable Long taskId,
-                                        @PathVariable Long commentId) {
-
-        commentService.deleteComment(commentId);
-        return ApiResponse.ofSuccess("댓글이 삭제되었습니다.");
+    public ResponseEntity<ApiResponse<Object>> deleteComment(
+            @SessionAttribute(value = "LOGIN_USER_ID") Long loginUserId,
+            @PathVariable Long commentId
+    ) {
+        commentExternalService.deleteComment(commentId, loginUserId);
+        return ApiResponse.ok(null);
     }
 }
