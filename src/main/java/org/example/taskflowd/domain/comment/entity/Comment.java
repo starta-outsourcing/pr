@@ -21,11 +21,9 @@ import java.util.Objects;
 @Table(
         name = "comments",
         indexes = {
-                @Index(name = "idx_tasks_title", columnList = "title"),
-                @Index(name = "idx_tasks_writer", columnList = "writer_id"),
-                @Index(name = "idx_tasks_assignee", columnList = "assignee_id"),
-                @Index(name = "idx_tasks_due_date", columnList = "due_date")
-        }
+                @Index(name = "idx_contents_writer", columnList = "writer_id"),
+                @Index(name = "idx_contents_task", columnList = "task_id"),
+                @Index(name = "idx_contents_parent", columnList = "parent_id"),}
 )
 @Getter
 @ToString(exclude = {"writer","task","parent","children"})
