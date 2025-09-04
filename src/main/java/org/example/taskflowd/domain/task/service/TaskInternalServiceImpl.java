@@ -9,8 +9,6 @@ import org.example.taskflowd.domain.task.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -20,7 +18,7 @@ public class TaskInternalServiceImpl implements TaskInternalService {
 
     @Override
     public TaskDescriptor getTaskDescriptorByIdOrThrow(Long id) {
-        return taskRepository.findByIdAndDeletedIsFalse(id)
+        return taskRepository.findByIdAndDeletedAtIsNull(id)
                 .map(taskMapper::toDescriptor)
                 .orElseThrow(() -> new InvalidTaskException(TaskErrorCode.TSK_SEARCH_FAILED_INVALID_ID));
     }
