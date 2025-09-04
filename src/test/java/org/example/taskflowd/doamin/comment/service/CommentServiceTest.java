@@ -1,4 +1,4 @@
-package org.example.taskflowd.Service;
+package org.example.taskflowd.doamin.comment.service;
 
 import org.example.taskflowd.domain.task.entity.Task;
 import org.example.taskflowd.domain.task.repository.TaskRepository;
