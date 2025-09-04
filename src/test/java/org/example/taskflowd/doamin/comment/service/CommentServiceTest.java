@@ -1,6 +1,8 @@
 package org.example.taskflowd.doamin.comment.service;
 
 import org.example.taskflowd.domain.task.entity.Task;
+import org.example.taskflowd.domain.task.enums.TaskPriority;
+import org.example.taskflowd.domain.task.enums.TaskStatus;
 import org.example.taskflowd.domain.task.repository.TaskRepository;
 import org.example.taskflowd.domain.user.entity.User;
 import org.example.taskflowd.domain.user.repository.UserRepository;
@@ -19,6 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -44,11 +47,12 @@ public class CommentServiceTest {
     @Transactional
     void createComment() {
 
+        // given
         CreateCommentRequest createCommentRequest = new CreateCommentRequest("내용", null);
         User user = new User();
-        Task task = new Task();
+        Task task = new Task("title", "description", user, user, TaskStatus.TODO, TaskPriority.HIGH, LocalDateTime.now());
         ReflectionTestUtils.setField(user, "id", 1L);
-        ReflectionTestUtils.setField(task, "id", 1L);
+        ReflectionTestUtils.setField(task, "id", 2L);
         given(taskRepository.findById(anyLong())).willReturn(Optional.of(task));
         given(userRepository.findById(anyLong())).willReturn(Optional.of(user));
 
@@ -56,9 +60,17 @@ public class CommentServiceTest {
         ReflectionTestUtils.setField(savedComment, "id", 1L);
         given(commentRepository.save(any(Comment.class))).willReturn(savedComment);
 
-        CommentResponse result = commentService.createComment(createCommentRequest, 1L, 1L);
+        // when
+        CommentResponse result = commentService.createComment(createCommentRequest, 2L, 1L);
 
+        // then
         assertThat(result).isNotNull();
+        assertThat(result.id()).isEqualTo(savedComment.getId());
+        assertThat(result.taskId()).isEqualTo(task.getId());
+        assertThat(result.userId()).isEqualTo(user.getId());
+        assertThat(result.user()).isEqualTo(user);
+        assertThat(result.content()).isEqualTo(createCommentRequest.content());
+        assertThat(result.parentId()).isNull();
     }
 
     @Test
@@ -66,18 +78,27 @@ public class CommentServiceTest {
     @Transactional
     void updateComment() {
 
+        // given
         CreateCommentRequest createCommentRequest = new CreateCommentRequest("내용", null);
         User user = new User();
-        Task task = new Task();
+        Task task = new Task("title", "description", user, user, TaskStatus.TODO, TaskPriority.HIGH, LocalDateTime.now());
         ReflectionTestUtils.setField(user, "id", 1L);
-        ReflectionTestUtils.setField(task, "id", 1L);
+        ReflectionTestUtils.setField(task, "id", 2L);
         Comment comment = Comment.create(createCommentRequest, task, user);
 
         UpdateCommentRequest updateCommentRequest = new UpdateCommentRequest("업데이트");
         given(commentRepository.findById(anyLong())).willReturn(Optional.of(comment));
 
+        // when
         CommentResponse result = commentService.updateComment(updateCommentRequest, 1L);
 
+        // then
         assertThat(result).isNotNull();
+        assertThat(result.id()).isEqualTo(comment.getId());
+        assertThat(result.taskId()).isEqualTo(task.getId());
+        assertThat(result.userId()).isEqualTo(user.getId());
+        assertThat(result.user()).isEqualTo(user);
+        assertThat(result.content()).isEqualTo(updateCommentRequest.content());
+        assertThat(result.parentId()).isNull();
     }
 }
