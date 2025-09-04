@@ -11,7 +11,7 @@ import org.example.taskflowd.domain.comment.dto.request.UpdateCommentRequest;
 import org.example.taskflowd.domain.comment.dto.response.CommentResponse;
 import org.example.taskflowd.domain.comment.entity.Comment;
 import org.example.taskflowd.domain.comment.repository.CommentRepository;
-import org.example.taskflowd.domain.comment.service.CommentService;
+import org.example.taskflowd.domain.comment.service.CommentExternalService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,10 +30,10 @@ import static org.mockito.BDDMockito.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-public class CommentServiceTest {
+public class CommentExternalServiceTest {
 
     @InjectMocks
-    private CommentService commentService;
+    private CommentExternalService commentExternalService;
 
     @Mock
     private CommentRepository commentRepository;
@@ -61,7 +61,7 @@ public class CommentServiceTest {
         given(commentRepository.save(any(Comment.class))).willReturn(savedComment);
 
         // when
-        CommentResponse result = commentService.createComment(createCommentRequest, 2L, 1L);
+        CommentResponse result = commentExternalService.createComment(createCommentRequest, 2L, 1L);
 
         // then
         assertThat(result).isNotNull();
@@ -90,7 +90,7 @@ public class CommentServiceTest {
         given(commentRepository.findById(anyLong())).willReturn(Optional.of(comment));
 
         // when
-        CommentResponse result = commentService.updateComment(updateCommentRequest, 1L);
+        CommentResponse result = commentExternalService.updateComment(updateCommentRequest, 1L);
 
         // then
         assertThat(result).isNotNull();
