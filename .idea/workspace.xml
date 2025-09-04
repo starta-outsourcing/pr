@@ -5,30 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="365ca16c-f793-4aca-82d3-163837db6ee8" name="Changes" comment="Merge remote-tracking branch 'origin/dev' into team/member&#10;&#10;# Conflicts:&#10;#&#9;src/main/resources/application.yml">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/common/util/ErrorCodeEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/auth/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/auth/jwt/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/auth/jwt/JwtProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/dto/mapper/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/dto/request/LoginRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/dto/request/UserDeleteRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/dto/request/UserSaveRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/dto/request/UserUpdateRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/dto/response/UserResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/domain/user/util/UserConst.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/common/dto/response/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/common/dto/response/ApiResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/common/entity/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/common/entity/BaseEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/common/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/taskflowd/common/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +79,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Downloaded.Files.Path.Enabled": "false",
+    "Gradle.Build TaskFlow.executor": "Run",
     "Gradle.Build pr.executor": "Run",
     "Gradle.Build taskflow.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
@@ -118,8 +96,9 @@
     "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.TaskflowDApplication (1).executor": "Run",
     "Spring Boot.TaskflowDApplication.executor": "Run",
-    "git-widget-placeholder": "Merging team/member",
+    "git-widget-placeholder": "team/member",
     "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -144,7 +123,7 @@
       <recent name="C:\Users\User\Desktop\taskflow" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.TaskflowDApplication (1)">
+  <component name="RunManager" selected="Spring Boot.TaskflowDApplication">
     <configuration name="JwtKeyGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.taskflowd.domain.common.JwtKeyGenerator" />
       <module name="taskflow-d.main" />
@@ -159,7 +138,7 @@
       </method>
     </configuration>
     <configuration name="TaskflowDApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="org.example.taskflow-d.main" />
+      <module name="taskflow-d.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.taskflowd.TaskflowDApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -167,8 +146,8 @@
     </configuration>
     <configuration name="TaskflowDApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <envs>
-        <env name="DB_NAME" value="taskflowdb" />
-        <env name="PASSWORD" value="6610" />
+        <env name="DB_NAME" value="kfc" />
+        <env name="PASSWORD" value="1234" />
         <env name="USER_NAME" value="root" />
       </envs>
       <module name="taskflow-d.main" />
@@ -191,8 +170,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
       </set>
     </attachedChunks>
   </component>
@@ -207,7 +186,17 @@
       <workItem from="1756830805321" duration="3021000" />
       <workItem from="1756833943862" duration="386000" />
       <workItem from="1756855862571" duration="9941000" />
+      <workItem from="1756917696926" duration="14000" />
     </task>
+    <task id="LOCAL-00001" summary="Merge remote-tracking branch 'origin/dev' into team/member&#10;&#10;# Conflicts:&#10;#&#9;src/main/resources/application.yml">
+      <option name="closed" value="true" />
+      <created>1756908025965</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1756908025965</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
