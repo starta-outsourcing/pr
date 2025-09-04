@@ -3,7 +3,6 @@ package org.example.taskflowd.domain.task.repository;
 import org.example.taskflowd.domain.task.entity.Task;
 import org.example.taskflowd.domain.task.enums.TaskPriority;
 import org.example.taskflowd.domain.task.enums.TaskStatus;
-import org.example.taskflowd.domain.user.entity.User;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.domain.Page;
@@ -16,7 +15,7 @@ import java.util.Optional;
 
 public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificationExecutor<Task> {
     // 전체 기록 페이징
-    Page<Task> findAllAndDeletedIsFalse(Pageable pageable);
+    Page<Task> findAllAndDeletedAtIsNull(Pageable pageable);
 
     // 작성자/담당자 기준 페이징
     Page<Task> findByWriterId(Long writerId, Pageable pageable);
@@ -40,7 +39,7 @@ public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificat
     Optional<Task> findByIdAndWriterId(Long id, Long writerId);
 
     // 삭제 필터링 id 탐색
-    Optional<Task> findByIdAndDeletedIsFalse(Long id);
+    Optional<Task> findByIdAndDeletedAtIsNull(Long id);
 
     /* ===== N+1 방지용 EntityGraph ===== */
 

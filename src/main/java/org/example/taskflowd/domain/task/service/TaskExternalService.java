@@ -32,7 +32,7 @@ public class TaskExternalService {
 
     /* ========== Helper Method ========== */
     private Task getTaskOrThrow(Long id) {
-        return taskRepository.findByIdAndDeletedIsFalse(id)
+        return taskRepository.findByIdAndDeletedAtIsNull(id)
                 .orElseThrow(() -> new InvalidTaskException(TaskErrorCode.TSK_SEARCH_FAILED_INVALID_ID));
     }
     private <T> T getTaskMapped(Long id, Function<Task, T> mapper) {
@@ -56,7 +56,7 @@ public class TaskExternalService {
 
     // 2.2 Task 목록 조회
     public Page<TaskListItemResponse> getTasks (Pageable pageable) {
-        Page<Task> tasks = taskRepository.findAllAndDeletedIsFalse(pageable);
+        Page<Task> tasks = taskRepository.findAllAndDeletedAtIsNull(pageable);
 
         return tasks.map(taskMapper::toListItemResponse);
     }
