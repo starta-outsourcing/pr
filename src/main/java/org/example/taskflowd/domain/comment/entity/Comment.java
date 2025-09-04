@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.example.taskflowd.common.entity.BaseEntity;
-import org.example.taskflowd.domain.comment.dto.request.CreateCommentRequest;
 import org.example.taskflowd.domain.comment.exception.CommentErrorCode;
 import org.example.taskflowd.domain.comment.exception.InvalidCommentException;
 import org.example.taskflowd.domain.task.entity.Task;
