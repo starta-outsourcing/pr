@@ -25,6 +25,8 @@ import java.util.function.Function;
 public class TaskExternalService {
     private final TaskInternalService taskInternalService;
 
+    private final UserService userService;
+
     private final TaskRepository taskRepository;
     private final TaskMapper taskMapper;
 
@@ -43,9 +45,8 @@ public class TaskExternalService {
     // 2.1 Task 생성
     @Transactional
     public TaskCreateResponse createTask(TaskCreateRequest request, Long loginUserId) {
-        // TODO : 유저 객체 반환 Internal Service Method 요청
-        User writer = UserService.getUser(loginUserId);
-        User assignee = UserService.getUser(request.assigneeId());
+        User writer = userService.getUser(loginUserId);
+        User assignee = userService.getUser(request.assigneeId());
 
         Task task = taskMapper.toEntity(request, assignee);
         Task savedTask = taskRepository.save(task);
@@ -72,7 +73,7 @@ public class TaskExternalService {
     public TaskUpdateResponse updateTask(TaskUpdateRequest request, Long taskId, Long loginUserId) {
         // TODO : 업데이트 권한 상세화
         // 현제 - 작성자가 및 담당자 아닐 경우 권한 부족
-        User loginUser = UserService.getUser(loginUserId);
+        User loginUser = userService.getUser(loginUserId);
         Task task = getTaskOrThrow(taskId);
 
         if (!(task.getAssignee().getId().equals(loginUser.getId()) ||
@@ -82,7 +83,7 @@ public class TaskExternalService {
 
         User newAssignee = task.getAssignee().getId().equals(request.assigneeId()) ?
                 task.getAssignee() :
-                UserService.getUser(request.assigneeId());
+                userService.getUser(request.assigneeId());
 
         task.updateTask(
                 request.title(),
@@ -103,7 +104,7 @@ public class TaskExternalService {
     public TaskStatusChangeResponse updateTaskStatus(TaskStatusUpdateRequest request, Long taskId, Long loginUserId) {
         // TODO : 업데이트 권한 상세화
         // 현제 - 작성자가 및 담당자 아닐 경우 권한 부족
-        User loginUser = UserService.getUser(loginUserId);
+        User loginUser = userService.getUser(loginUserId);
         Task task = getTaskOrThrow(taskId);
 
         if (!(task.getAssignee().getId().equals(loginUser.getId()) ||
@@ -121,7 +122,7 @@ public class TaskExternalService {
     public void deleteTask(Long taskId, Long loginUserId) {
         // TODO : 업데이트 권한 상세화
         // 현제 - 작성자가 및 담당자 아닐 경우 권한 부족
-        User loginUser = UserService.getUser(loginUserId);
+        User loginUser = userService.getUser(loginUserId);
         Task task = getTaskOrThrow(taskId);
 
         if (!(task.getAssignee().getId().equals(loginUser.getId()) ||
