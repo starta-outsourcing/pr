@@ -2,6 +2,7 @@ package org.example.taskflowd.domain.team.service;
 
 
 import lombok.RequiredArgsConstructor;
+import org.example.taskflowd.common.exception.GlobalException;
 import org.example.taskflowd.domain.team.dto.TeamCreateRequest;
 import org.example.taskflowd.domain.team.dto.TeamResponse;
 import org.example.taskflowd.domain.team.dto.TeamUpdateRequest;
@@ -14,6 +15,7 @@ import org.example.taskflowd.domain.user.dto.response.UserResponseDto;
 import org.example.taskflowd.domain.user.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.example.taskflowd.domain.team.exception.TeamErrorCode;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,7 +47,7 @@ public class TeamService {
     public TeamResponse createTeam(TeamCreateRequest request) {
         // 팀 이름 중복 체크
         if (teamRepository.existsByName(request.getName())) {
-            throw new IllegalArgumentException("이미 사용중인 팀 이름입니다.");
+            throw new GlobalException(TeamErrorCode.TEAM_NAME_DUPLICATE);
         }
 
         Team team = new Team(request.getName(), request.getDescription());
@@ -62,7 +64,7 @@ public class TeamService {
         // 이름이 변경되었고, 다른 팀에서 사용 중인 이름인지 체크
         if (!team.getName().equals(request.getName()) &&
                 teamRepository.existsByName(request.getName())) {
-            throw new IllegalArgumentException("이미 사용중인 팀 이름입니다.");
+            throw new GlobalException(TeamErrorCode.TEAM_NAME_DUPLICATE);
         }
 
         team.updateTeamInfo(request.getName(), request.getDescription());
@@ -118,6 +120,6 @@ public class TeamService {
     // 공통 메서드
     private Team findTeamById(Long teamId) {
         return teamRepository.findById(teamId)
-                .orElseThrow(() -> new IllegalArgumentException("없는 팀이다. 돌아가라"));
+                .orElseThrow(() -> new GlobalException(TeamErrorCode.TEAM_NOT_FOUND));
     }
 }

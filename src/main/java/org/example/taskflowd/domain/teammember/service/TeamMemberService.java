@@ -14,7 +14,7 @@ import org.example.taskflowd.domain.user.entity.User;
 import org.example.taskflowd.domain.user.service.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.example.taskflowd.domain.team.exception.TeamErrorCode;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +35,7 @@ public class TeamMemberService {
         User user = userService.getUser(request.getUserId());
 
         if (teamMemberRepository.existsByTeamIdAndUserId(teamId, request.getUserId())) {
-            throw new IllegalArgumentException("이미 팀에 소속되어 있습니다.");
+            throw new GlobalException(TeamErrorCode.MEMBER_ALREADY_EXISTS);
         }
 
         TeamMember teamMember = new TeamMember(team, request.getUserId(), "MEMBER"); // 기본 역할
@@ -50,7 +50,8 @@ public class TeamMemberService {
 
         // 팀 멤버 존재 확인
         TeamMember teamMember = teamMemberRepository.findByTeamIdAndUserId(teamId, userId)
-                .orElseThrow(() -> new IllegalArgumentException("그런 사람 없습니다."));
+                .orElseThrow(() -> new GlobalException(TeamErrorCode.MEMBER_NOT_FOUND));
+
 
         teamMember.delete();
         return convertToTeamResponse(team);
@@ -108,6 +109,6 @@ public class TeamMemberService {
     // 공통 메서드
     private Team findTeamById(Long teamId) {
         return teamRepository.findById(teamId)
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 접근"));
+                .orElseThrow(() -> new GlobalException(TeamErrorCode.TEAM_NOT_FOUND));
     }
 }
