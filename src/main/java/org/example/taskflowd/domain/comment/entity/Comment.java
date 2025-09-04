@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.example.taskflowd.common.entity.BaseEntity;
 import org.example.taskflowd.domain.comment.dto.request.CreateCommentRequest;
+import org.example.taskflowd.domain.comment.exception.CommentErrorCode;
+import org.example.taskflowd.domain.comment.exception.InvalidCommentException;
 import org.example.taskflowd.domain.task.entity.Task;
 import org.example.taskflowd.domain.user.entity.User;
 import org.hibernate.annotations.BatchSize;
@@ -71,9 +73,13 @@ public class Comment extends BaseEntity {
         children.remove(child);
         child.parent = null;
     }
-    public void changeParent(Comment newParent) {
-        if (newParent == this) throw new IllegalArgumentException("self parent");
-        this.parent = newParent;
+    private void setParent(Comment parent) {
+        if (parent == this) throw new InvalidCommentException(CommentErrorCode.CMT_PARENT_IS_ME);
+        if (parent != null && parent.task != this.task) {
+            throw new InvalidCommentException(CommentErrorCode.CMT_TASK_MISMATCH);
+        }
+        this.parent = parent;
+        if (parent != null) parent.children.add(this);
     }
 
     /* ========== 유틸 메소드 ========== */
@@ -88,19 +94,18 @@ public class Comment extends BaseEntity {
     public void setTask(Task task) { this.task = task; }
 
     /* ========== 정적 팩토리 메서드 ========== */
-    private Comment(Long id, String content, User writer, Task task) {
-        this.id = id;
+    @Builder(builderMethodName = "rootBuilder", builderClassName = "RootBuilder")
+    private Comment(String content, User writer, Task task) {
         this.content = content;
         this.writer = writer;
         this.task = task;
     }
 
-    public static Comment create(CreateCommentRequest request, Task task, User writer) {
-        return new Comment(
-                null,
-                request.content(),
-                writer,
-                task
-        );
+    @Builder(builderMethodName = "replyBuilder", builderClassName = "ReplyBuilder")
+    private Comment(String content, User writer, Task task, Comment parent) {
+        this.content = content;
+        this.writer = writer;
+        this.task = task;
+        setParent(parent);
     }
 }
