@@ -8,8 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.example.taskflowd.common.entity.BaseEntity;
+import org.example.taskflowd.domain.task.entity.Task;
 import org.example.taskflowd.domain.user.entity.User;
-import org.example.taskflowd.domain.user.entity.Task;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.SQLRestriction;
 
@@ -88,4 +88,6 @@ public class Comment extends BaseEntity {
     public void updateComment(String content) {
         this.content = content;
     }
+
+    public void setTask(Task task) { this.task = task; }
 }
