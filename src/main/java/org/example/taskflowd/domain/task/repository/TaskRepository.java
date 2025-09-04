@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificationExecutor<Task> {
+    // 전체 기록 페이징
+    Page<Task> findAllAndDeletedIsFalse(Pageable pageable);
+
     // 작성자/담당자 기준 페이징
     Page<Task> findByWriterId(Long writerId, Pageable pageable);
     Page<Task> findByAssigneeId(Long assigneeId, Pageable pageable);
@@ -35,6 +38,9 @@ public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificat
     // 권한 체크 용도
     Optional<Task> findByIdAndAssigneeId(Long id, Long assigneeId);
     Optional<Task> findByIdAndWriterId(Long id, Long writerId);
+
+    // 삭제 필터링 id 탐색
+    Optional<Task> findByIdAndDeletedIsFalse(Long id);
 
     /* ===== N+1 방지용 EntityGraph ===== */
 

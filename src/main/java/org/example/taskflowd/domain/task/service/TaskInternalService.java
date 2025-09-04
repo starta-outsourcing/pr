@@ -5,6 +5,6 @@ import org.example.taskflowd.domain.task.dto.TaskDescriptor;
 import java.util.Optional;
 
 public interface TaskInternalService {
-    Optional<TaskDescriptor> findById(Long id);
+    TaskDescriptor getTaskDescriptorByIdOrThrow(Long id);
 }
 
